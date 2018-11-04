@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "stdexcept": "cpp",
+        "initializer_list": "cpp",
+        "iterator": "cpp",
+        "string_view": "cpp",
+        "utility": "cpp"
+    }
+}
