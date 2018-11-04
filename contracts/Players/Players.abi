@@ -1,0 +1,69 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov  4 16:45:59 2018",
+    "version": "eosio::abi/1.0",
+    "structs": [
+        {
+            "name": "add",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "username",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "getplayer",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "update",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "porperty",
+                    "type": "int64"
+                },
+                {
+                    "name": "city",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "add",
+            "type": "add",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getplayer",
+            "type": "getplayer",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "update",
+            "type": "update",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [],
+    "ricardian_clauses": [],
+    "abi_extensions": []
+}
