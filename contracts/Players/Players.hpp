@@ -16,7 +16,13 @@ namespace DotA {
             void add(const account_name account, string& username);
 
             [[eosio::action]]
-            void update(account_name account, int64_t porperty, string& city);
+            void update(account_name account, int64_t porperty);
+
+            [[eosio::action]]
+            void addcities(account_name account, string& city);
+
+             [[eosio::action]]
+            void removecities(account_name account, string& city);
 
             [[eosio::action]]
             void getplayer(const account_name account);
@@ -57,5 +63,5 @@ namespace DotA {
             typedef multi_index<N(player), player> playerIndex;
     };
 
-    EOSIO_ABI(Players, (add)(update)(getplayer))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
+    EOSIO_ABI(Players, (add)(update)(getplayer)(addcities)(removecities))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
 }

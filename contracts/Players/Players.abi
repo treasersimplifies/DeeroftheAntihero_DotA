@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov  4 16:45:59 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Wed Nov  7 22:14:28 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -17,12 +17,40 @@
             ]
         },
         {
+            "name": "addcities",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "city",
+                    "type": "string"
+                }
+            ]
+        },
+        {
             "name": "getplayer",
             "base": "",
             "fields": [
                 {
                     "name": "account",
                     "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "removecities",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "city",
+                    "type": "string"
                 }
             ]
         },
@@ -37,10 +65,6 @@
                 {
                     "name": "porperty",
                     "type": "int64"
-                },
-                {
-                    "name": "city",
-                    "type": "string"
                 }
             ]
         }
@@ -53,8 +77,18 @@
             "ricardian_contract": ""
         },
         {
+            "name": "addcities",
+            "type": "addcities",
+            "ricardian_contract": ""
+        },
+        {
             "name": "getplayer",
             "type": "getplayer",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "removecities",
+            "type": "removecities",
             "ricardian_contract": ""
         },
         {
