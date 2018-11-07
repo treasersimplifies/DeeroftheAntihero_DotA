@@ -4,6 +4,13 @@ This game is about players compete with each other to get as much territory whic
 
 ## How to use
 (1)create a new wallet ```cleos create wallet dota```
+()
+
+
+()Compile contract:
+cd /DeeroftheAntiheroDIR/contracts/Players
+eosio-cpp -o Players.wasm Players.cpp --abigen
+()Set contract:
 
 
 
