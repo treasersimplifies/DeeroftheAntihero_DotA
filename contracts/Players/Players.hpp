@@ -13,44 +13,52 @@ namespace DotA {
             Players(account_name self):contract(self) {}
 
             [[eosio::action]]
+            void hi(const account_name account, string& username){
+                print( "Hello, it is a beautiful player, ", name{account},", ", username);
+                print("\n");
+                print(" ==============\n ");
+            }
+
+            [[eosio::action]]//**
             void add(const account_name account, string& username);
 
             [[eosio::action]]
             void update(account_name account, int64_t porperty);
 
-            [[eosio::action]]
-            void addcities(account_name account, string& city);
-
-             [[eosio::action]]
-            void removecities(account_name account, string& city);
-
-            [[eosio::action]]
+            [[eosio::action]]//**
             void getplayer(const account_name account);
 
             // [[eosio::action]]
             // void addability(const account_name account, string& ability);
 
-            // struct item { // all items purchased from the Marketplace.
-            //     uint64_t item_id;
-            //     string name;
-            //     uint64_t power;
-            //     uint64_t health;
-            //     string ability;
-            //     uint64_t level_up;
+            struct city { // all items purchased from the Marketplace.
+                uint64_t city_id;
+                string city_name;
+                uint64_t profit;//power
+                uint64_t defense;//health
+                uint64_t owner;
+                // string ability;
+                // uint64_t level_up;
 
-            //     uint64_t primary_key() const { return item_id; }
+                uint64_t primary_key() const { return city_id; }
 
-            //     EOSLIB_SERIALIZE(item, (item_id)(name)(power)(health)(ability)(level_up))
-            // };
+                EOSLIB_SERIALIZE(city, (city_id)(cityname)(profit)(defense)(owner))//(ability)(level_up)
+            };
 
-            // [[eosio::action]]
-            // void additem(const account_name account, item purchased_item);
+            // [[eosio::action]]//**
+            // void attackcity(const account_name account, city acity);//string& cityname
+
+            [[eosio::action]]//**
+            void addcities(const account_name account, city acity);
+
+             [[eosio::action]]//**
+            void removecities(const account_name account, city acity);
 
             struct player {
                 uint64_t account_name;
                 string username;
                 int64_t porperty;
-                vector<string> cities;//
+                vector<city> cities;//
                 // vector<item> inventory;//
                 // uint64_t health_points = 1000;
                 // uint64_t energy_points = 1000;
@@ -63,5 +71,5 @@ namespace DotA {
             typedef multi_index<N(player), player> playerIndex;
     };
 
-    EOSIO_ABI(Players, (add)(update)(getplayer)(addcities)(removecities))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
+    EOSIO_ABI(Players, (hi)(add)(update)(getplayer)(addcities)(removecities))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
 }
