@@ -5,7 +5,7 @@ This game is about players compete with each other to get as much territory whic
 ## How to use
 ```bash
 # 0. Start the nodeos
-nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin
+nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --contracts-console
 # 1. Create new wallet with the name "dota"
 cleos wallet create -n dota —-to-console
 # 2. Generate two pair of keys (use the command twice)
@@ -22,10 +22,15 @@ cleos wallet import --private-key=5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79z
 cleos create account eosio invoker EOS5uwWCjvFRExqAHm2QgPp5yfRmY9VPzsikf4B9bXYpoktyP3rQx EOS5PRkgchBGS7MNms4JvSJzQf7mDjg1j2szikjaP6QoeLSQLZWhD
 # 6. Create more accounts
 cleos create account eosio storm EOS6mg1jYHnyWrXbMn8aqfbbg6cydjdBgTKwKB1bSSpHSQpitxMzZ EOS59w3S5worNr52DHGJ4Zu9HeDDwuRsUtm4ypHVHnkDQFduKhdhQ
+cleos create account eosio testhero EOS5vtqE4i8j1tad58DWPgXDKavUc9Tn7jRZTz6b86xFkhqgFYo2N EOS6S8Snum6Z46swRFLRX5Bd99QsLZs3ioVeAYhULMNYkUYmRGfx6
 # 7. Compile the contract
 cd /DeeroftheAntiheroDIR/contracts/Players
 eosio-cpp -o Players.wasm Players.cpp --abigen
 # 8. Set contract
+cleos set contract testhero /Users/treasersmac/programming/EOS/Dapps/DeeroftheAntihero/contracts/Players -p testhero
+# 9. Test contract
+--json
 ```
+
 
 
