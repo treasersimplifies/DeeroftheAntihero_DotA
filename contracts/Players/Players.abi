@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Mon Nov 12 11:03:56 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Tue Nov 13 20:27:54 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -17,7 +17,7 @@
             ]
         },
         {
-            "name": "addcities",
+            "name": "addcity",
             "base": "",
             "fields": [
                 {
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "name": "attackcity",
+            "name": "addtitle",
             "base": "",
             "fields": [
                 {
@@ -39,8 +39,8 @@
                     "type": "name"
                 },
                 {
-                    "name": "acity",
-                    "type": "city"
+                    "name": "atitle",
+                    "type": "title"
                 }
             ]
         },
@@ -53,7 +53,7 @@
                     "type": "uint64"
                 },
                 {
-                    "name": "cityname",
+                    "name": "city_name",
                     "type": "string"
                 },
                 {
@@ -62,6 +62,10 @@
                 },
                 {
                     "name": "defense",
+                    "type": "uint64"
+                },
+                {
+                    "name": "owner",
                     "type": "uint64"
                 }
             ]
@@ -91,7 +95,7 @@
             ]
         },
         {
-            "name": "removecities",
+            "name": "removecity",
             "base": "",
             "fields": [
                 {
@@ -101,6 +105,24 @@
                 {
                     "name": "acity",
                     "type": "city"
+                }
+            ]
+        },
+        {
+            "name": "title",
+            "base": "",
+            "fields": [
+                {
+                    "name": "title_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "name": "num",
+                    "type": "int64"
                 }
             ]
         },
@@ -127,13 +149,13 @@
             "ricardian_contract": ""
         },
         {
-            "name": "addcities",
-            "type": "addcities",
+            "name": "addcity",
+            "type": "addcity",
             "ricardian_contract": ""
         },
         {
-            "name": "attackcity",
-            "type": "attackcity",
+            "name": "addtitle",
+            "type": "addtitle",
             "ricardian_contract": ""
         },
         {
@@ -147,8 +169,8 @@
             "ricardian_contract": ""
         },
         {
-            "name": "removecities",
-            "type": "removecities",
+            "name": "removecity",
+            "type": "removecity",
             "ricardian_contract": ""
         },
         {

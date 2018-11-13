@@ -1,17 +1,11 @@
 #include "Players.hpp"
 
 namespace DotA {
-    // using namespace eosio;
-    // using std::string;
 
     [[eosio::action]]
     void Players::add(const account_name account, string& username) {
-        print("Inside ADD action of Players!");
-        // std::cout << "Inside add action yahoooooo!\n" ;
         require_auth(account);
-
         playerIndex players(_self, _self);
-
         auto iterator = players.find(account);
         eosio_assert(iterator == players.end(), "Address for account already exists");
 
@@ -21,96 +15,122 @@ namespace DotA {
             player.porperty = 0;
             // player.cities.push_back("NULL");
         });
-        print(" You have successfully ADD an new PLAYER in DotA! ");
+        print(" *** You have successfully ADD an new PLAYER in DotA! *** ");
 
     }
 
     [[eosio::action]]
     void Players::update(account_name account, int64_t porperty) {//, string& city
-        // print("Inside UPDATE action of Players!\n");
         require_auth(account);
-
         playerIndex players(_self, _self);
-
         auto iterator = players.find(account);
         eosio_assert(iterator != players.end(), "Address for account not found");
 
         players.modify(iterator, account, [&](auto& player) {
-            //player.cities.push_back(city);
-            player.porperty +=porperty;
+            player.porperty += porperty;
         });
         print("You have successfully UPDATE an PLAYER in DotA!\n");
     }
 
-    // [[eosio::action]]//**
-    // void Players::attackcity(const account_name account,city acity) {//string& cityname
-    //     // print("Inside ADDCITIES action of player!");
-    //     require_auth(account);
-    //     playerIndex players(_self, _self);
-    //     auto iterator = players.find(account);
-    //     eosio_assert(iterator != players.end(), "Address for account not found");
-         
-
-    // }
-
-    [[eosio::action]]
-    void Players::addcities(account_name account,city acity){
-        // print("Inside ADDCITIES action yahoooooo!");
+    [[eosio::action]]//**
+    void Players::addtitle(const account_name account, title atitle){
+        print("Inside addtitle...");
         require_auth(account);
         playerIndex players(_self, _self);
         auto iterator = players.find(account);
         eosio_assert(iterator != players.end(), "Address for account not found");
 
         players.modify(iterator, account, [&](auto& player) {
-            player.cities.push_back(city{
-                acity.city_id,
-                acity.cityname,
-                acity.profit,
-                acity.defense
+            player.titles_owned.push_back(title{
+                atitle.title_id,
+                atitle.name,
+                atitle.num,
             });
-            //player.porperty +=porperty;
         });
-        print("You have successfully ADDCITIES for an PLAYER in DotA!\n");
+        print("You have successfully ADDTITLE for an PLAYER in DotA!");
     }
 
     [[eosio::action]]
-    void Players::removecities(account_name account,city acity){
-        print("Inside ADDCITIES action yahoooooo!\n");
+    void Players::addcity(account_name account,city acity){
         require_auth(account);
-
         playerIndex players(_self, _self);
-
         auto iterator = players.find(account);
         eosio_assert(iterator != players.end(), "Address for account not found");
 
         players.modify(iterator, account, [&](auto& player) {
-            player.cities.pop_back();
+            player.cities_owned.push_back(city{
+                acity.city_id,
+                acity.city_name,
+                acity.profit,
+                acity.defense,
+                acity.owner
+            });
         });
-        print("You have successfully ADDCITIES for an PLAYERs in DotA!\n");
+        print("You have successfully ADDCITIY for an PLAYER in DotA!\n");
+    }
+
+    [[eosio::action]]
+    void Players::removecity(account_name account,city acity){
+        require_auth(account);
+        playerIndex players(_self, _self);
+        auto iterator = players.find(account);
+        eosio_assert(iterator != players.end(), "Address for account not found");
+        // How to implement remove city from a player ?
+        auto currentPlayer = players.get(account);
+        players.modify(iterator, account, [&](auto& player) {
+            // auto targert = currentPlayer.cities_owned.find(acity);
+            player.cities_owned.pop_back();
+        });
+
+        print("You have successfully REMOVECITIY for an PLAYER in DotA!\n");
     }
 
     [[eosio::action]]
     void Players::getplayer(const account_name account) {
-        print("Inside GETPLAYER action!");
         playerIndex players(_self, _self);
-
-        auto iterator = players.find(account);
+        auto iterator = players.find(account);//
         eosio_assert(iterator != players.end(), "Address for account not found");
         auto currentPlayer = players.get(account);
 
-        print(" Username: ", currentPlayer.username.c_str());
-        print(" Porperty : ", currentPlayer.porperty);
-        print(" ");    
-        if (currentPlayer.cities.size() > 0) {
-            print(" Cities owned : ");
-            for (uint32_t i = 0; i < currentPlayer.cities.size(); i++) {
-                print(currentPlayer.cities.at(i).city_name.c_str(), " ");
+        print(" |Username: ", currentPlayer.username.c_str());
+        print(" |Porperty : ", currentPlayer.porperty);  
+        if (currentPlayer.cities_owned.size() > 0) {
+            print(" |Cities owned : ");
+            for (uint32_t i = 0; i < currentPlayer.cities_owned.size(); i++) {
+                print(currentPlayer.cities_owned.at(i).city_name.c_str(), " ");
             }
-            print("  ");
         } else {
-            print(" Cities owned : None ");
+            print(" |Cities owned : None ");
+        }
+
+        if (currentPlayer.titles_owned.size() > 0) {
+            print(" |Titles owned : ");
+            for (uint32_t i = 0; i < currentPlayer.titles_owned.size(); i++) {
+                print(currentPlayer.titles_owned.at(i).name.c_str(), " ");
+            }
+        } else {
+            print(" |Titles owned : None ");
         }
     } 
 
 }
 
+
+
+    // [[eosio::action]]
+    // void Players::addsimcity(const account_name account, simplecity asimplecity){
+    //     require_auth(account);
+    //     playerIndex players(_self, _self);
+    //     auto iterator = players.find(account);
+    //     eosio_assert(iterator != players.end(), "Address for account not found");
+
+    //     players.modify(iterator, account, [&](auto& player) {
+    //         player.simplecities_owned.push_back(simplecity{
+    //             asimplecity.city_id,
+    //             asimplecity.city_name,
+    //             asimplecity.profit,
+    //             // asimplecity.defense
+    //         });
+    //     });
+    //     print("You have successfully ADDSIMPLECITIY for an PLAYER in DotA!\n");
+    // }
