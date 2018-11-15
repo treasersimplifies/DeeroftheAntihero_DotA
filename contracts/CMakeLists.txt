@@ -7,4 +7,5 @@ add_subdirectory(libc++)
 
 # Your contracts (add the name of the folder which contains you smart contract)
 add_subdirectory(Players)
+add_subdirectory(Citygroup)
 # add_subdirectory(Cities)
