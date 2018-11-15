@@ -1,0 +1,106 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Nov 15 09:44:23 2018",
+    "version": "eosio::abi/1.0",
+    "structs": [
+        {
+            "name": "attack",
+            "base": "",
+            "fields": [
+                {
+                    "name": "attacker",
+                    "type": "name"
+                },
+                {
+                    "name": "cityId",
+                    "type": "uint64"
+                },
+                {
+                    "name": "attack_value",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "cityinit",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "citylistall",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "getbyid",
+            "base": "",
+            "fields": [
+                {
+                    "name": "cityId",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "updatecity",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "cityId",
+                    "type": "uint64"
+                },
+                {
+                    "name": "newowner",
+                    "type": "uint64"
+                },
+                {
+                    "name": "newprofit",
+                    "type": "uint64"
+                },
+                {
+                    "name": "__defense",
+                    "type": "int64"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "attack",
+            "type": "attack",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "cityinit",
+            "type": "cityinit",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "citylistall",
+            "type": "citylistall",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getbyid",
+            "type": "getbyid",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "updatecity",
+            "type": "updatecity",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [],
+    "ricardian_clauses": [],
+    "abi_extensions": []
+}

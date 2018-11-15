@@ -1,12 +1,10 @@
 #include <eosiolib/eosio.hpp>
 #include <eosiolib/print.hpp>
 #include <string>
-#include <../Players/Players.hpp>
 
 namespace DotA {
     using namespace eosio;
     using std::string;
-    typedef Players::city city;
 
     class Citygroup : public contract {
         using contract::contract;
@@ -14,28 +12,37 @@ namespace DotA {
         public:
 
             Citygroup(account_name self):contract(self) {}
+            
+             struct city { 
+                uint64_t city_id;
+                string city_name;
+                uint64_t profit;
+                uint64_t defense;
+                uint64_t owner;
+                uint64_t primary_key() const { return city_id; }
+            };
 
             typedef multi_index<N(city), city> cityIndex;
 
             [[eosio::action]]
-            void city_init(account_name account);//void add(account_name account, city newProduct);
+            void cityinit(account_name account);//void add(account_name account, city newProduct);
 
             [[eosio::action]]
-            void attack_city(account_name attacker, uint64_t cityId, uint64_t attack_value);//void buy(account_name buyer, uint64_t productId);
+            void getbyid(uint64_t cityId);
 
             [[eosio::action]]
-            void city_get_by_id(uint64_t cityId);
+            void citylistall();//uint64_t cityId
 
             [[eosio::action]]
-            void city_list_all();//uint64_t cityId
+            void updatecity(account_name account, uint64_t cityId, uint64_t newowner, uint64_t newprofit, int64_t __defense);
 
             [[eosio::action]]
-            void city_update(account_name account, uint64_t cityId, uint64_t newowner, uint64_t newprofit, int64_t __defense);
+            void attack(account_name attacker, uint64_t cityId, uint64_t attack_value);//void buy(account_name buyer, uint64_t productId);
 
             // [[eosio::action]]
             // void remove(account_name account, uint64_t productId);
     };
 
-    EOSIO_ABI(Citygroup, (attack_city)(city_get_by_id)(city_list_all)(city_init)(city_update));
+    EOSIO_ABI(Citygroup, (cityinit)(getbyid)(citylistall)(updatecity)(attack));
 }
 
