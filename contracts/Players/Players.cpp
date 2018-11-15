@@ -91,7 +91,8 @@ namespace DotA {
         auto iterator = players.find(account);//
         eosio_assert(iterator != players.end(), "Address for account not found");
         auto currentPlayer = players.get(account);
-
+        
+        print(" |Account_name(ID): ", currentPlayer.account_name);
         print(" |Username: ", currentPlayer.username.c_str());
         print(" |Porperty : ", currentPlayer.porperty);  
         if (currentPlayer.cities_owned.size() > 0) {

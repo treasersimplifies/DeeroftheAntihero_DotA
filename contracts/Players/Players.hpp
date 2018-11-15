@@ -72,3 +72,7 @@ namespace DotA {
 
     EOSIO_ABI(Players, (hi)(add)(update)(getplayer)(addcity)(removecity)(addtitle))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
 }
+
+//waiting to improve :
+// player_list_all
+//
