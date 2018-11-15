@@ -5,7 +5,7 @@ This game is about players compete with each other to get as much territory whic
 ## How to use
 ```bash
 # 0. Start the nodeos
-nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --contracts-console
+nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --contracts-console --verbose-http-errors
 
 
 # 1. Create new wallet with the name "dota"
@@ -41,12 +41,12 @@ cleos create account eosio god EOS5hdugsVWNbBnU3v4EGE8ktL29gDkcrUKwX1Xdr7kv2ZHsb
 cleos create account eosio dota EOS5ust6g8US4EPX21FUJENYXMYbGLXqfNdM4spED2ot9fG46Xd1C EOS8iPHfjgbAGi3tAQ8GvmRSBsbBFawtEJtp4tbcgffwYWQXTWZy6
 
 
-# 7. Compile the contract
+# 7. Compile the Players contract
 cd /DeeroftheAntiheroDIR/contracts/Players
 eosio-cpp -o Players.wasm Players.cpp --abigen
 
 
-# 8. Set the contract
+# 8. Set the Players contract
 cleos set contract dota /Users/treasersmac/programming/EOS/Dapps/DeeroftheAntihero/contracts/Players -p dota@active
 
 
