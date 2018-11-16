@@ -2,9 +2,7 @@
 #include <eosiolib/asset.hpp>
 #include <iostream>
 #include <math.h>
-#include <stack>
-#include <cstdlib>
-#include <map>
+
 
 namespace DotA {
     /*  中缀表达式转换成后缀表达式
@@ -16,7 +14,7 @@ namespace DotA {
     如果是左括号，直接入栈，如果优先级高于栈顶符号，入栈。
     */
     [[eosio::action]]
-    void Citygroup::inftopos(string infix, string result)//std:: std:://string InfixToPostfix
+    void Citygroup::inftopos(string infix, string & result)//std:: std:://string InfixToPostfix
     {
         char current = 0;
         std::string postfix;//后缀表达式
@@ -101,24 +99,25 @@ namespace DotA {
     void Citygroup::poxcpu(string s, float & result)//float std:://float posfixCompute
     {
         std::stack<float> tempResult;
-        std::string strNum;
+        std::string strNum;//
         float currNum = 0;
         float tempNum = 0;
         print(" OK3.2 ");
         for(std::string::const_iterator i = s.begin(); i != s.end(); ++i)
-        {
+        {   
+            print("*i=",*i);
             switch(*i)
-            {
+            {   
                 case '0':case '1':case '2':case '3':case '4':case '5':
                 case '6':case '7':case '8':case '9':case '.':
                     strNum.push_back(*i);
                     break;
                 case '+':
-                    tempNum = tempResult.top();
-                    tempResult.pop();
-                    tempNum += tempResult.top();
-                    tempResult.pop();
-                    tempResult.push(tempNum);
+                    tempNum = tempResult.top();print(" OK3.27 ");
+                    tempResult.pop();print(" OK3.28 ");
+                    tempNum += tempResult.top();print(" OK3.29 ");
+                    tempResult.pop();print(" OK3.30 ");
+                    tempResult.push(tempNum);print(" OK3.31 ");
                     break;
                 case '-':
                     tempNum = tempResult.top();
@@ -142,11 +141,13 @@ namespace DotA {
                     tempResult.push(tempNum);
                     break;
                 case '#':
-                    currNum = std::stof(strNum);//in c++11, use currNum = std::stof(strNum); atof(strNum.c_str())
+                    print(" OK3.22 ");
+                    currNum = std::stof(strNum);print(" OK3.25 ");//in c++11, use currNum = std::stof(strNum); atof(strNum.c_str())
                     strNum.clear();
                     tempResult.push(currNum);
                     break;
             }
+            print(" OK3.35 ");
         }
         // return tempResult.top();
         print(" OK3.4 ");
@@ -160,13 +161,15 @@ namespace DotA {
     [[eosio::action]]
     void Citygroup::expcal(string s, float & result)//std:://expressionCalculate
     {   
-        string infres;
+        string ss;
+        string & infres = ss;
         print(" OK2 ");
-        inftopos(s,infres);
+        inftopos(s, infres);
         float lofloat = 0;
         float & poxres = lofloat;
+        print("infre = ",infres, " ss = ",ss);
         print(" OK3 ");
-        poxcpu(infres,poxres);
+        poxcpu(ss, poxres);
         print(" OK4 ");
         result = poxres;//posfixCompute(InfixToPostfix(s))   poxcpu(inftopos(s))
     }
@@ -340,7 +343,7 @@ namespace DotA {
         float res = 0;
         float & result = res;
         print(" OK1 ");
-        expcal(solution,result);//
+        expcal(solution,result);//solution
         print(" OK5 ");
         uint64_t solution_result = uint64_t(result);//expressionCalculate(solution);
         print(" OKa.. ");

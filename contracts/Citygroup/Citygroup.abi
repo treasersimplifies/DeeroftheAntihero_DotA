@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Nov 16 09:15:06 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Nov 16 11:03:25 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -96,6 +96,11 @@
             ]
         },
         {
+            "name": "hi",
+            "base": "",
+            "fields": []
+        },
+        {
             "name": "inftopos",
             "base": "",
             "fields": [
@@ -185,6 +190,11 @@
         {
             "name": "getcitybyid",
             "type": "getcitybyid",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "hi",
+            "type": "hi",
             "ricardian_contract": ""
         },
         {

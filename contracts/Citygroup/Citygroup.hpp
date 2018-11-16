@@ -1,7 +1,9 @@
 #include <eosiolib/eosio.hpp>
 #include <eosiolib/print.hpp>
 #include <string>
-
+#include <stack>
+#include <cstdlib>
+#include <map>
 
 namespace DotA {
     using namespace eosio;
@@ -13,9 +15,19 @@ namespace DotA {
         public:
 
             Citygroup(account_name self):contract(self) {}
+            [[eosio::action]]
+            void hi(){
+                string strNum;
+                strNum.push_back('3');
+                int64_t currNum1 = std::stoi(strNum.c_str()); //strtof(strNum.c_str(),nullptr);
+                float currNum2 = string_to_name(strNum.c_str()); //  std::stof(strNum)   atof(strNum.c_str());
+                print("currNum1=",currNum1," currNum2=",currNum2);
+                float currNum3 = std::stof(strNum.c_str());
+                print("currNum3=",currNum3);
+            }
 
             [[eosio::action]]
-            void inftopos(string infix, string result);//InfixToPostfix
+            void inftopos(string infix, string & result);//InfixToPostfix
             [[eosio::action]]
             void poxcpu(string s, float & result);//posfixCompute
             [[eosio::action]]
@@ -73,6 +85,6 @@ namespace DotA {
             // void remove(account_name account, uint64_t productId);
     };
 
-    EOSIO_ABI(Citygroup, (cityinit)(getcitybyid)(citylistall)(updatecity)(declarewar)(attack)(getbattle));
+    EOSIO_ABI(Citygroup, (hi)(cityinit)(getcitybyid)(citylistall)(updatecity)(declarewar)(attack)(getbattle)(inftopos)(poxcpu)(expcal));
 }
 
