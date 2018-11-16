@@ -28,6 +28,9 @@ namespace DotA {
             [[eosio::action]]//**
             void getplayer(const account_name account);
 
+            [[eosio::action]]
+            void playergetall();
+
             struct title{
                 uint64_t title_id;
                 string name;
@@ -70,7 +73,7 @@ namespace DotA {
             typedef multi_index<N(player), player> playerIndex;
     };
 
-    EOSIO_ABI(Players, (hi)(add)(update)(getplayer)(addcity)(removecity)(addtitle))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
+    EOSIO_ABI(Players, (hi)(add)(update)(getplayer)(addcity)(removecity)(addtitle)(playergetall))// (additem)(addability) If you don't specifies actions here, .ABI won't specifies either. 
 }
 
 //waiting to improve :

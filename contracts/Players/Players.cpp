@@ -114,6 +114,46 @@ namespace DotA {
         }
     } 
 
+    [[eosio::action]]
+    void Players::playergetall(){
+        playerIndex players(_self, _self);
+        auto iterator = players.find(1);
+        eosio_assert(iterator != players.end(), "player 1 not found.");
+        auto currentPlayer = players.get(1);
+        
+        uint64_t playerId;
+        for(playerId=1; playerId < currentPlayer.username.size(); playerId++){
+            auto iterator = players.find(playerId);
+            // eosio_assert(iterator != cities.end(), "City not found");
+            if(!(iterator != players.end()))break;
+
+            auto theplayer = players.get(playerId);
+            print("  [Account_name(ID): ", currentPlayer.account_name);
+            print(" | Username: ", currentPlayer.username.c_str());
+            print(" | Porperty: ", currentPlayer.porperty);
+           
+            if (currentPlayer.cities_owned.size() > 0) {
+                print(" |Cities owned : ");
+                for (uint32_t i = 0; i < currentPlayer.cities_owned.size(); i++) {
+                    print(currentPlayer.cities_owned.at(i).city_name.c_str(), " ");
+                }
+            } else {
+                print(" |Cities owned : None ");
+            }
+
+            if (currentPlayer.titles_owned.size() > 0) {
+                print(" |Titles owned : ");
+                for (uint32_t i = 0; i < currentPlayer.titles_owned.size(); i++) {
+                    print(currentPlayer.titles_owned.at(i).name.c_str(), " ");
+                }
+            } else {
+                print(" |Titles owned : None ");
+            }
+            print("]  ");
+        }
+    }
+
+
 }
 
 
