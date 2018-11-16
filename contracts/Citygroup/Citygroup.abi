@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Nov 15 09:44:23 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Nov 16 09:15:06 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -11,11 +11,19 @@
                     "type": "name"
                 },
                 {
-                    "name": "cityId",
+                    "name": "battleId",
                     "type": "uint64"
                 },
                 {
                     "name": "attack_value",
+                    "type": "uint64"
+                },
+                {
+                    "name": "solution",
+                    "type": "string"
+                },
+                {
+                    "name": "test",
                     "type": "uint64"
                 }
             ]
@@ -36,12 +44,82 @@
             "fields": []
         },
         {
-            "name": "getbyid",
+            "name": "declarewar",
+            "base": "",
+            "fields": [
+                {
+                    "name": "attacker",
+                    "type": "name"
+                },
+                {
+                    "name": "cityId",
+                    "type": "uint64"
+                },
+                {
+                    "name": "battleId",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "expcal",
+            "base": "",
+            "fields": [
+                {
+                    "name": "s",
+                    "type": "string"
+                },
+                {
+                    "name": "result",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "getbattle",
+            "base": "",
+            "fields": [
+                {
+                    "name": "battleId",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "getcitybyid",
             "base": "",
             "fields": [
                 {
                     "name": "cityId",
                     "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "inftopos",
+            "base": "",
+            "fields": [
+                {
+                    "name": "infix",
+                    "type": "string"
+                },
+                {
+                    "name": "result",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "poxcpu",
+            "base": "",
+            "fields": [
+                {
+                    "name": "s",
+                    "type": "string"
+                },
+                {
+                    "name": "result",
+                    "type": "float32"
                 }
             ]
         },
@@ -90,8 +168,33 @@
             "ricardian_contract": ""
         },
         {
-            "name": "getbyid",
-            "type": "getbyid",
+            "name": "declarewar",
+            "type": "declarewar",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "expcal",
+            "type": "expcal",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getbattle",
+            "type": "getbattle",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "getcitybyid",
+            "type": "getcitybyid",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "inftopos",
+            "type": "inftopos",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "poxcpu",
+            "type": "poxcpu",
             "ricardian_contract": ""
         },
         {
