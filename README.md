@@ -8,7 +8,7 @@ This game is about players compete with each other to get as much territory whic
 nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --contracts-console --verbose-http-errors
 
 
-# 1. Create new wallet with the name "dota"
+# 1. Create new wallet with the name "dota"(or whatever name you like)
 cleos wallet create -n dota —-to-console
 
 
@@ -36,17 +36,19 @@ cleos create account eosio storm EOS6mg1jYHnyWrXbMn8aqfbbg6cydjdBgTKwKB1bSSpHSQp
 # 6. Create more testing accounts
 cleos create account eosio testhero EOS5vtqE4i8j1tad58DWPgXDKavUc9Tn7jRZTz6b86xFkhqgFYo2N EOS6S8Snum6Z46swRFLRX5Bd99QsLZs3ioVeAYhULMNYkUYmRGfx6
 cleos create account eosio sniper EOS5TCc6ZE7eamcnyAu54aAivizXxPjoFGBTdbBVL5s3HacRBcFVt EOS6uKkjWEJq3hvCWGPDa3Vex5WZ2iNQ3StR7zZSzfZ4faxUT6LCb
-# create the root account to set the contract
+# create the root account for setting contracts
 cleos create account eosio god EOS5hdugsVWNbBnU3v4EGE8ktL29gDkcrUKwX1Xdr7kv2ZHsbxD9F EOS6ocAHgBf6dbQTDsCBp28Emx7rBqiGBkVs4g4s8ohTLH4zere42
 cleos create account eosio dota EOS5ust6g8US4EPX21FUJENYXMYbGLXqfNdM4spED2ot9fG46Xd1C EOS8iPHfjgbAGi3tAQ8GvmRSBsbBFawtEJtp4tbcgffwYWQXTWZy6
+cleos create account eosio fy EOS4v2oX9ZbF4ninG6NieWUpcXrvYKaS1tNDFQFEZ6Dy8DUXFYkPu EOS56DVgR7vMEyuqkx44h53DmDDmRjEg7wsVBBPkUYY1Lvfxn4Wes
 
 
-# 7. Compile the Players contract
+# 7. Compile the Players/Citygroup contract
 cd /DeeroftheAntiheroDIR/contracts/Players
 eosio-cpp -o Players.wasm Players.cpp --abigen
+cd /DeeroftheAntiheroDIR/contracts/Citygroup
+eosio-cpp -o Citygroup.wasm Citygroup.cpp --abigen
 
-
-# 8. Set the Players contract
+# 8. Deploy the Players contract
 cleos set contract dota /Users/treasersmac/programming/EOS/Dapps/DeeroftheAntihero/contracts/Players -p dota@active
 
 
@@ -79,6 +81,36 @@ cleos push action dota addtitle '{"account":"testhero","atitle":{"title_id":1,"n
 cleos push action dota getplayer '["testhero"]' -p testhero@active
 cleos push action dota addtitle '{"account":"testhero","atitle":{"title_id":2,"name":"hhh","num":9}}' -p testhero@active
 cleos push action dota getplayer '["testhero"]' -p testhero@active
+
+
+# 10. Deploy the Citygroup contract
+cleos set contract fy /Users/treasersmac/programming/EOS/Dapps/DeeroftheAntihero/contracts/Citygroup -p fy@active
+
+
+# 10. Test the Citygroup contract
+# In order to test it, first list all players to make clear their account_names
+# Player::playergetall action 
+cleos push action dota playergetall '["testhero"]' -p testhero@active
+
+# test Citygroup::cityinit action
+cleos push action fy cityinit '["testhero"]' -p testhero@active # Transaction should have at least one required authority
+
+# test Citygroup::getbyid action
+cleos push action fy getcitybyid '[1]' -p testhero@active
+cleos push action fy getcitybyid '[2]' -p testhero@active
+
+# test Citygroup::citylistall action
+cleos push action fy citylistall '[]' -p testhero@active
+
+# test Citygroup::declarewar action
+cleos push action fy declarewar '["testhero",1,1]' -p testhero@active
+cleos push action fy declarewar '["testhero",1,2]' -p testhero@active
+
+# test Citygroup::getbattle action
+cleos push action fy getbattle '[1]' -p testhero@active
+
+# test Citygroup::attack action
+cleos push action fy attack '["testhero",1,10,"(3/3+2)*8",1]' -p testhero@active
 
 ```
 
