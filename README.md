@@ -111,8 +111,24 @@ cleos push action fy getbattle '[1]' -p testhero@active
 
 # test Citygroup::attack action
 cleos push action fy attack '["testhero",1,10,"(3/3+2)*8",1]' -p testhero@active
+# test more ... 
+cleos push action fy declarewar '["testhero",1,2]' -p testhero@active
+cleos push action fy attack '["testhero",2,10,"(3/3+2)*8",1]' -p testhero@active
+cleos push action fy getbattle '[2]' -p testhero@active
+
+cleos push action fy declarewar '["testhero",1,3]' -p testhero@active
+cleos push action fy attack '["testhero",3,10,"(3/3+2)*8",1]' -p testhero@active
+cleos push action fy getbattle '[3]' -p testhero@active
+
+cleos push action fy declarewar '["testhero",1,4]' -p testhero@active
+cleos push action fy attack '["testhero",4,10,"(3/3+2)*8",1]' -p testhero@active
+cleos push action fy getbattle '[4]' -p testhero@active
 
 ```
+
+## Versioning
+v0.01 : implement players management and primitive citys management.
+v0.02 : implement 24-count attack.
 
 
 
