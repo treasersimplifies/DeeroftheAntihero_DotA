@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Fri Nov 16 11:03:25 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 18 22:19:18 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -71,7 +71,7 @@
                 },
                 {
                     "name": "result",
-                    "type": "float32"
+                    "type": "int64"
                 }
             ]
         },
@@ -124,7 +124,7 @@
                 },
                 {
                     "name": "result",
-                    "type": "float32"
+                    "type": "int64"
                 }
             ]
         },

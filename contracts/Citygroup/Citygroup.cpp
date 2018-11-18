@@ -96,16 +96,16 @@ namespace DotA {
         栈中最后的元素即为结果。
     */
     [[eosio::action]]
-    void Citygroup::poxcpu(string s, float & result)//float std:://float posfixCompute
+    void Citygroup::poxcpu(string s, int64_t & result)//float std:://float posfixCompute
     {
         std::stack<float> tempResult;
         std::string strNum;//
         float currNum = 0;
         float tempNum = 0;
-        print(" OK3.2 ");
+        //print(" OK3.2 ");
         for(std::string::const_iterator i = s.begin(); i != s.end(); ++i)
         {   
-            print("*i=",*i);
+            //print("*i=",*i);
             switch(*i)
             {   
                 case '0':case '1':case '2':case '3':case '4':case '5':
@@ -113,11 +113,11 @@ namespace DotA {
                     strNum.push_back(*i);
                     break;
                 case '+':
-                    tempNum = tempResult.top();print(" OK3.27 ");
-                    tempResult.pop();print(" OK3.28 ");
-                    tempNum += tempResult.top();print(" OK3.29 ");
-                    tempResult.pop();print(" OK3.30 ");
-                    tempResult.push(tempNum);print(" OK3.31 ");
+                    tempNum = tempResult.top();//print(" OK3.27 ");
+                    tempResult.pop();//print(" OK3.28 ");
+                    tempNum += tempResult.top();//print(" OK3.29 ");
+                    tempResult.pop();//print(" OK3.30 ");
+                    tempResult.push(tempNum);//print(" OK3.31 ");
                     break;
                 case '-':
                     tempNum = tempResult.top();
@@ -141,36 +141,35 @@ namespace DotA {
                     tempResult.push(tempNum);
                     break;
                 case '#':
-                    print(" OK3.22 ");
-                    currNum = std::stof(strNum);print(" OK3.25 ");//in c++11, use currNum = std::stof(strNum); atof(strNum.c_str())
+                    currNum = std::stoi(strNum);//in c++11, use currNum = std::stof(strNum); atof(strNum.c_str())
                     strNum.clear();
                     tempResult.push(currNum);
                     break;
             }
-            print(" OK3.35 ");
+            // print(" OK3.35 ");
         }
         // return tempResult.top();
-        print(" OK3.4 ");
+        // print(" OK3.4 ");
         // auto r = tempResult.top();//where the problem at
-        print(" OK3.6 ");
-        float rr = tempResult.top();
-        print(" OK3.8 ");
+        // print(" OK3.6 ");
+        int64_t rr = tempResult.top();//float
+        // print(" OK3.8 ");
         result = rr;//tempResult.top();
     }
 
     [[eosio::action]]
-    void Citygroup::expcal(string s, float & result)//std:://expressionCalculate
+    void Citygroup::expcal(string s, int64_t & result)//std:://expressionCalculate
     {   
         string ss;
         string & infres = ss;
-        print(" OK2 ");
+        // print(" OK2 ");
         inftopos(s, infres);
-        float lofloat = 0;
-        float & poxres = lofloat;
-        print("infre = ",infres, " ss = ",ss);
-        print(" OK3 ");
+        int64_t lofloat = 0;
+        int64_t & poxres = lofloat;
+        print(" infre = ",infres); //" ss = ",ss
+        // print(" OK3 ");
         poxcpu(ss, poxres);
-        print(" OK4 ");
+        // print(" OK4 ");
         result = poxres;//posfixCompute(InfixToPostfix(s))   poxcpu(inftopos(s))
     }
 
@@ -340,13 +339,10 @@ namespace DotA {
         uint64_t defenderPoints=thecity.defense*1000/10; // 10 seconds
         print("attackerPoints = ",attackerPoints, " ; defenderPoints = ",defenderPoints);
 
-        float res = 0;
-        float & result = res;
-        print(" OK1 ");
+        int64_t res = 0;
+        int64_t & result = res;
         expcal(solution,result);//solution
-        print(" OK5 ");
-        uint64_t solution_result = uint64_t(result);//expressionCalculate(solution);
-        print(" OKa.. ");
+        uint64_t solution_result = result;//expressionCalculate(solution);
 
         if(solution_result==24){//Solved solution
             print(" Your solution is RIGHT! ");
@@ -354,7 +350,7 @@ namespace DotA {
             uint64_t t1 = thisbattle.attacker_ts;
             uint64_t sovled_time = (t2-t1)/10 ;
             print(" Solved time : ", sovled_time);
-            attackerPoints = attackerPoints/sovled_time;//****
+            attackerPoints = attackerPoints/sovled_time;//**** 
             battles.modify(iterator, attacker, [&](auto& battle) {
                 battle.attacker_totalpoint = attackerPoints;
                 battle.defender_totalpoint = defenderPoints;

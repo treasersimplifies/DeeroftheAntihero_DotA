@@ -29,9 +29,9 @@ namespace DotA {
             [[eosio::action]]
             void inftopos(string infix, string & result);//InfixToPostfix
             [[eosio::action]]
-            void poxcpu(string s, float & result);//posfixCompute
+            void poxcpu(string s, int64_t & result);//posfixCompute
             [[eosio::action]]
-            void expcal(string s, float & result);//float expressionCalculate
+            void expcal(string s, int64_t & result);//float expressionCalculate
 
             struct battle{
                 uint64_t battle_id;
